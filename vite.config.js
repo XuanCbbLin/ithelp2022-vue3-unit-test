@@ -11,6 +11,9 @@ import highlightjs from 'markdown-it-highlightjs'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  test: {
+    environment: 'jsdom',
+  },
   base: '/',
   resolve: {
     alias: {
