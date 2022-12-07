@@ -1,9 +1,9 @@
 <template>
-  <button data-test="button_open-account">開戶</button>
+  <button data-test="button_open-account" @click="openAccount">開戶</button>
   <input data-test="input_account" v-model="account" type="text" />
 
-  <button data-test="button_deposit">存款</button>
-  <input data-test="input_deposit" v-model="deposit" type="number" min="0" />
+  <button data-test="button_deposit" @click="deposit">存款</button>
+  <input data-test="input_deposit" v-model="userDeposit" type="number" min="0" />
 
   <button data-test="button_withdraw">提款</button>
   <input data-test="input_withdraw" v-model="withdraw" type="number" min="0" />
@@ -12,6 +12,19 @@
 </template>
 
 <script setup>
-// import { ref } from 'vue'
-// import { FoodBank } from './practice-05.js'
+import { ref } from 'vue'
+import { FoodBank } from './practice-05.js'
+
+const userAccount = ref('')
+const userDeposit = ref(0)
+const status = ref('')
+const foodBank = new FoodBank()
+
+const openAccount = () => {
+  status.value = foodBank.openAccount(userAccount.value)
+}
+
+const deposit = () => {
+  status.value = foodBank.deposit(userAccount.value, userDeposit.value)
+}
 </script>
