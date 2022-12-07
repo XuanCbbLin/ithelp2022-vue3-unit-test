@@ -8,7 +8,7 @@ describe('開戶', () => {
 
     await wrapper.find('[data-test="input_account"]').setValue('xuan')
 
-    await wrapper.find('[data-test="input_account"]').trigger('click')
+    await wrapper.find('[data-test="button_open-account"]').trigger('click')
 
     expect(wrapper.find('[data-test="status"]').text()).toBe('開戶完成。')
   })
@@ -17,7 +17,7 @@ describe('開戶', () => {
     const wrapper = mount(component)
 
     await wrapper.find('[data-test="input_account"]').setValue('apple')
-    await wrapper.find('[data-test="input_account"]').trigger('click')
+    await wrapper.find('[data-test="button_open-account"]').trigger('click')
 
     expect(wrapper.find('[data-test="status"]').text()).toBe('開戶完成。')
   })
@@ -30,7 +30,7 @@ describe('存款', () => {
     await wrapper.find('[data-test="input_deposit"]').setValue('xuan')
     await wrapper.find('[data-test="input_deposit"]').trigger('click')
 
-    expect(wrapper.find('[data-test="status"]').text()).toBe('您已開過戶頭囉。')
+    expect(wrapper.find('[data-test="status"]').text()).toBe('查詢不到該用戶，請重新確認。')
   })
 
   it('若交易成功，應在狀態顯示欄（Ａ）顯示 存款完成，戶頭目前餘額 {該用戶的乾乾數量}', async () => {
@@ -39,7 +39,7 @@ describe('存款', () => {
     await wrapper.find('[data-test="input_deposit"]').setValue('apple')
     await wrapper.find('[data-test="input_deposit"]').trigger('click')
 
-    expect(wrapper.find('[data-test="status"]').text()).toBe('開戶完成。')
+    expect(wrapper.find('[data-test="status"]').text()).toBe('存款完成，戶頭目前餘額 ')
   })
 })
 
@@ -59,7 +59,7 @@ describe('提領', () => {
     await wrapper.find('[data-test="input_withdraw"]').setValue('xuan')
     await wrapper.find('[data-test="button_withdraw"]').trigger('click')
 
-    expect(wrapper.find('[data-test="status"]').text()).toBe('存款完成，戶頭目前餘額0')
+    expect(wrapper.find('[data-test="status"]').text()).toBe('存款完成，戶頭目前餘額 ')
   })
 
   it('若交易成功，餘額不足提領金額應在狀態顯示欄（Ａ）顯示 餘額不足，你帳戶目前餘額為 {該用戶的乾乾數量}', async () => {
@@ -68,6 +68,6 @@ describe('提領', () => {
     await wrapper.find('[data-test="input_withdraw"]').setValue('xuan')
     await wrapper.find('[data-test="button_withdraw"]').trigger('click')
 
-    expect(wrapper.find('[data-test="status"]').text()).toBe('餘額不足，你帳戶目前餘額為100')
+    expect(wrapper.find('[data-test="status"]').text()).toBe('餘額不足，你帳戶目前餘額為 100')
   })
 })
